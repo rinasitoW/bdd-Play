@@ -87,3 +87,14 @@ Then('I verify {int} items are in cart', async ({ inventoryPage }, count) => {
   await inventoryPage.verifyItemInCart(count);
 });
 
+Then('I verify the product name is not empty', async ({ detailPage }) => {
+  const name = await detailPage.getInventoryTitle();
+  expect(name).toBeTruthy();
+  expect(name?.length).toBeGreaterThan(0);
+});
+
+Then('I verify the product name matches the details page', async ({ detailPage, inventoryState }) => {
+  const name = await detailPage.getInventoryTitle();
+  expect(name).toBe(inventoryState.itemName);
+});
+

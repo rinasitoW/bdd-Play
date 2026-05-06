@@ -45,6 +45,7 @@ export class InventoryPage {
 
     async addtocartItemByIndex(index: number) {
         await this.page.locator('.inventory_item').nth(index).locator('button.btn_inventory').click();
+        await expect(this.cartBadge).toBeVisible();
     }
 
     async addFirstItemToCart() {
